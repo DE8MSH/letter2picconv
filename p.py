@@ -63,7 +63,7 @@ def combine_images_with_text(text, image_dir, max_width, output_file):
 
 # Parameter
 text_to_render = "ich behaupte dass der converter funktioniert"
-input_directory = "/home/superuser/Bilder/frohes"  # Pfad zum Verzeichnis mit Buchstabenbildern
+input_directory = "/your/dir/of/pictures"  # Pfad zum Verzeichnis mit Buchstabenbildern
 max_image_width = 3072
 output_image_path = "output.png"
 
