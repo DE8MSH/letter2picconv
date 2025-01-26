@@ -42,7 +42,7 @@ def combine_images_with_text(text, image_dir, max_width, output_file):
     total_height = sum(line[2] for line in lines) + (len(lines) - 1) * 10  # 10 Pixel Abstand zwischen Zeilen
     max_line_width = max(line[1] for line in lines)
 
-    with Image(width=max_line_width, height=total_height, background=Color("black")) as combined_image:
+    with Image(width=max_line_width, height=total_height, background=Color("transparent")) as combined_image:
         current_y = 0
         for line, line_width, line_height in lines:
             current_x = (max_line_width - line_width) // 2  # Zentriere die Zeile horizontal
@@ -61,11 +61,17 @@ def combine_images_with_text(text, image_dir, max_width, output_file):
         combined_image.save(filename=output_file)
         print(f"Ausgabebild gespeichert unter: {output_file}")
 
-# Parameter
-text_to_render = "ich behaupte dass der converter funktioniert"
-input_directory = "/your/dir/of/pictures"  # Pfad zum Verzeichnis mit Buchstabenbildern
-max_image_width = 3072
-output_image_path = "output.png"
+# Beispielaufruf mit Text als Parameter
+if __name__ == "__main__":
+    import sys
 
-combine_images_with_text(text_to_render, input_directory, max_image_width, output_image_path)
+    if len(sys.argv) < 5:
+        print("Verwendung: python script.py <text> <image_dir> <max_width> <output_file>")
+        sys.exit(1)
 
+    text_to_render = sys.argv[1]
+    input_directory = sys.argv[2]  # Pfad zum Verzeichnis mit Buchstabenbildern
+    max_image_width = int(sys.argv[3])
+    output_image_path = sys.argv[4]
+
+    combine_images_with_text(text_to_render, input_directory, max_image_width, output_image_path)
